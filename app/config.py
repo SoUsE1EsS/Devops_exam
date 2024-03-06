@@ -7,3 +7,4 @@ SQLALCHEMY_TRACK_MODIFICATIONS = True
 SQLALCHEMY_ECHO = False
 
 UPLOAD_FOLDER = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'media', 'images')
+#xDDDDDDDDDDDDDDDDDDDDDDDDDDD
