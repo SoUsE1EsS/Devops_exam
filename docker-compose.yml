@@ -3,7 +3,7 @@ services:
   app:
     container_name: app
     hostname: app
-    
+    image: souse1ess/devops_exam:latest
     build: 
       context: .
       dockerfile: Dockerfile
