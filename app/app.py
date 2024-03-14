@@ -26,7 +26,14 @@ create_models(app)
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    if request.method == 'POST':
-        return render_template('index.html') 
+    incidents = db.session.execute(db.select(Incident)).scalars()
+    incident_by_key = None
 
-    return render_template('index.html') 
+    if request.method == 'POST':
+        key = request.form.get('key')
+        incident_by_key = db.session.execute(db.select(Detailes).filter(Detailes.key == key)).scalar()
+        if not incident_by_key:
+            flash('Неизвестный ключ','warning')
+
+
+    return render_template('index.html', incidents=incidents, incident_by_key=incident_by_key) 
