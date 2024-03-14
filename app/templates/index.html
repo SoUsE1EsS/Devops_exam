@@ -2,8 +2,75 @@
 
 
 {% block content %}
+<div class="container">
+    <div class="row my-4 text-center">
+        <div class="col-4 py-2">
+            ID лифта
+        </div>
+        <div class="col-4 py-2">
+            Тип лифта
+        </div>
+        <div class="col-4 py-2">
+            Адрес лифта
+        </div>
+        <hr>
+
+        {% if incidents %}
+        {% for incident in incidents %}
+            <div class="col-4 py-2">
+                {{ incident.id }}
+            </div>
+            <div class="col-4 py-2">
+                {{ incident.type }}
+            </div>
+            <div class="col-4 py-2">
+                {{ incident.address }}
+            </div>
+            <hr>
+        {% endfor %}
+        {% endif %}
+    </div>
+
+    <div class="w-75">
+        <form action="{{ url_for('index') }}" method="post" class="d-flex">
+            <input type="text" name="key" id="key" class="form-control" placeholder="Ключ доступа">
+            <button type="submit" class="btn btn-primary">Проверить</button>
+        </form>
+    </div>
 
 
-<h1>Тут будет основной функционал</h1>
+    {% if incident_by_key %}
+    <div class="row my-4 text-center">
+        <div class="col-3 py-2">
+            ID лифта
+        </div>
+        <div class="col-3 py-2">
+            Тип лифта
+        </div>
+        <div class="col-3 py-2">
+            Адрес лифта
+        </div>
+        <div class="col-3 py-2">
+            Ключ доступа
+        </div>
+        <hr>
+        <div class="col-3 py-2">
+            {{ incident_by_key.id }}
+        </div>
+        <div class="col-3 py-2">
+            {{ incident_by_key.type }}
+        </div>
+        <div class="col-3 py-2">
+            {{ incident_by_key.address }}
+        </div>
+        <div class="col-3 py-2">
+            {{ incident_by_key.key }}
+        </div>
+        <hr>
+    </div>
+    {% endif %}
+
+
+</div>
 
 {% endblock %}
